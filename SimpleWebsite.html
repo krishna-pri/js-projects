@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Details</title>
+    </head>
+    <body>
+      
+        <h1 id="id1"></h1>
+        <h2 id="id2">About</h2>
+        <p id="id3"></p>
+        <h2 id="id4">Hobbies</h2>
+        <ol>
+            <li id="l1"></li>
+            <li id="l2"></li>
+            <li id="l3"></li>
+        </ol>
+
+        <script>
+            var tit=prompt("Enter a title for this website");
+            var con=prompt("Enter your content");
+            var hob=prompt("Enter any 3 hobby of yours(seperate them with comma ,)");
+            
+
+            var id1 = document.getElementById("id1");
+            id1.innerHTML = tit;
+
+            var id3 = document.getElementById("id3");
+            id3.innerHTML = con;
+
+            var hobbies=hob.split(",");
+
+            var l1 = document.getElementById("l1");
+            l1.innerHTML = hobbies[0];
+
+            var l2 = document.getElementById("l2");
+            l2.innerHTML = hobbies[1];
+
+            var l3 = document.getElementById("l3");
+            l3.innerHTML = hobbies[2];
+        </script>
+    </body>
+</html>

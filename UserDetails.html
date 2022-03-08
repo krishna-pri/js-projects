@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Details</title>
+    </head>
+    <body>
+      
+        <p id="id1"></p>
+        <p id="id2"></p>
+        <p id="id3"></p>
+        <p id="id4"></p>
+
+        <script>
+            var nam=prompt("Enter your name");
+            var age=prompt("Enter your age");
+            var email=prompt("Enter your email");
+            var pno=prompt("Enter your phone number");
+
+            var id1 = document.getElementById("id1");
+            id1.innerHTML = nam;
+
+            var id2 = document.getElementById("id2");
+            id2.innerHTML = age;
+
+            var id3 = document.getElementById("id3");
+            id3.innerHTML = email;
+
+            var id4 = document.getElementById("id4");
+            id4.innerHTML = pno;
+        </script>
+    </body>
+</html>
