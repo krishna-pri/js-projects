@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Attribute</title>
+    <script>
+        function getSrc() {
+            var s = document.getElementById("ip1").value;
+
+            alert(s);
+
+            document.getElementById("img1").src = s;
+        }
+    </script>
+</head>
+
+<body>
+    <input id="ip1" type="text" placeholder="Enter the src of an image">
+    <button onclick="getSrc()">Update Source</button>
+    <img id="img1"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Suzdal_asv2019-01_img25_Rizopolozhensky_Monastery.jpg/800px-Suzdal_asv2019-01_img25_Rizopolozhensky_Monastery.jpg">
+
+</body>
+
+</html>
