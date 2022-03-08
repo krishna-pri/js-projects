@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Javascript Demo</title>
+
+</head>
+
+<body>
+    <h1 id="id-1" class="cat-1">Hello</h1>
+    <h1 id="id-2" class="cat-2">Hi</h1>
+    <p id="id-3" class="cat-1">Hey</p>
+    <p id="id-4" class="cat-2">Hola</p>
+    <script>
+        // var id1 = document.getElementById("id-1")
+        // console.log(id1);
+        // var id2 = document.getElementById("id-2")
+        // console.log(id2);
+        var ids=["id-1","id-2","id-3","id-4"];
+        for(i=0;i<ids.length;i++)
+        {
+            var id=document.getElementById(ids[i]);
+            console.log(id);
+        }
+    </script>
+</body>
+
+</html>
