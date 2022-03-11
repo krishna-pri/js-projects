@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Change Style
+    </title>
+</head>
+
+<body>
+    <h1 id="id1">Hello World</h1>
+    <h2 id="id2">Welcome</h2>
+    <br>
+    <input id="ip1" type="text" placeholder="Enter ID">
+    <br><br>
+    <input id="ip2" type="text" placeholder="Enter color,size,margin">
+    <br><br>
+    <input id="ip3" type="text" placeholder="Enter value for attribute">
+    <br><br>
+    <button id="btn" onclick="change()">OK</button>
+</body>
+<script>
+    function change() {
+        var id = document.getElementById("ip1").value;
+        // alert(id);
+        var atr = document.getElementById("ip2").value;
+        // alert(atr);
+        var val = document.getElementById("ip3").value;
+        // alert(val);
+        if (atr == "size") {
+            document.getElementById(id).style.fontSize = val;
+        }
+        else if (atr == "color") {
+            document.getElementById(id).style.color = val;
+        }
+        else if (atr == "margin") {
+            document.getElementById(id).style.margin = val;
+        }
+
+        // console.log(document.getElementById(id));
+    }
+</script>
+
+</html>

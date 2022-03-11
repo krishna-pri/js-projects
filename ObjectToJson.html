@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Object to JSON
+    </title>
+</head>
+
+<body>
+    <h1>Login Page</h1>
+    <br>
+    <input id="un" type="text" placeholder="Username">
+    <br><br>
+    <input id="pwd" type="password" placeholder="password">
+    <br><br>
+    <button id="btn" onclick="collect()">SEND</button>
+    <p id="para1"></p>
+    <script>
+        function collect() {
+            var un = document.getElementById("un").value;
+            var pwd = document.getElementById("pwd").value;
+            var obj = {};
+            obj.user_name = un;
+            obj.u_pwd = pwd;
+            var j = JSON.stringify(obj);
+            document.getElementById("para1").innerHTML = j;
+        }
+    </script>
+</body>
+
+</html>
