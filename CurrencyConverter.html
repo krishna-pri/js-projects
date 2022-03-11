@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Currency Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0px;
+            background-color: white;
+            font-family: 'Ubuntu', sans-serif;
+            color: black;
+            width: 100%;
+            background-color: rgb(199, 199, 238);
+        }
+
+        .header {
+            top: 0px;
+            background-color: rgb(50, 13, 153);
+            height: 40px;
+            color: white;
+            font-weight: bold;
+            padding-top: 10px;
+            margin: 0px;
+            font-size: 18px;
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+
+        .footer {
+            bottom: 0px;
+            background-color: rgb(50, 13, 153);
+            height: 50px;
+            color: white;
+            font-weight: bold;
+            padding-right: 20px;
+            padding-left: 20px;
+            padding-top: 15px;
+            font-size: 18px;
+        }
+
+        .data {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px;
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .data>label,
+        .data>input {
+            margin: 5px;
+        }
+
+        input {
+            width: 200px;
+            height: 25px;
+        }
+
+        .data>button {
+            margin: 5px;
+            background-color: rgb(50, 13, 153);
+            font-weight: bold;
+            width: 100px;
+            height: 30px;
+            border: 1px solid rgb(50, 13, 153);
+            color: white;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .data p {
+            background-color: white;
+            border: 1px solid rgb(50, 13, 153);
+            color: black;
+            font-weight: bold;
+            font-family: 'Ubuntu', sans-serif;
+            width: 300px;
+            height: 25px;
+
+        }
+
+        /* #ip2:hover
+        {
+            
+        } */
+        #a1{
+            text-decoration: none;
+            padding-top: 100px;
+            font-weight: bold;
+            color: black;
+        }
+        #a1:hover, #a2:hover
+        {
+            text-decoration: underline;
+        }
+        #a2
+        {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top" class="header">
+        <center>CURRENCY CONVERTER <a id="a2" href="CCAbout.html" style="float: right;">About Us</a></center>
+    </div>
+    <br><br>
+    <center><a id="a1" href="HowToUse.html">How to use the product?</a></center>
+    <div class="data">
+
+        <label for="ip1">Base</label>
+        <input id="ip1" type="text">
+        <label for="ip2">Convert To</label>
+        <input id="ip2" type="text">
+        <label for="ip3">Value</label>
+        <input id="ip3" type="text">
+        <label for="ip4">Date of Conversion</label>
+        <input id="ip4" type="text" placeholder="yyyy-mm-dd">
+
+        <button onclick="load()" id="btn">CONVERT</button>
+
+        <p id="p1"></p>
+
+    </div>
+    <div style="bottom: 0%;" class="footer">
+        <b style="float: left;"> © 2022 Currency Converter</b>
+    </div>
+
+    <script>
+        function load() {
+            // alert("Hello!");
+            console.log("hi");
+            fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('http://api.exchangeratesapi.io/v1/latest?access_key=83ad22c5545455f10c5f9e87c227ab2c')}`)
+                .then(response => {
+                    if (response.ok) return response.json();
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+
+                    var json_object = JSON.parse(data.contents);
+                    //console.log(json_object);
+                    var bas = document.getElementById("ip1").value;
+                    var to = document.getElementById("ip2").value;
+                    var cur = document.getElementById("ip3").value;
+
+                    cur = cur / (json_object.rates[bas]);
+                    var cur = cur * (json_object.rates[to]);
+                    var date = document.getElementById("ip4").value;
+                    if (date != json_object.date) {
+                        alert("Enter today's date in the correct format");
+                        return;
+                    }
+
+
+                    document.getElementById("p1").innerHTML = cur + " " + to;
+
+                });
+        }
+    </script>
+</body>
+
+</html>
