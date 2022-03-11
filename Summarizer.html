@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TEXT SUMMARIZER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0px;
+            background-color: white;
+            font-family: 'Ubuntu', sans-serif;
+            color: black;
+            width: 100%;
+            background-image: url("https://i.gifer.com/2zGI.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .header {
+            top: 0px;
+            background-color: rgb(247, 223, 12);
+            height: 40px;
+            color: black;
+            font-weight: bolder;
+            padding-top: 10px;
+            margin: 0px;
+            font-size: 18px;
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+        a
+        {
+            text-decoration: none;
+            color: black;
+            font-weight: bolder;
+        }
+        a:hover
+        {
+            text-decoration: underline;
+        }
+
+        .footer {
+            bottom: 0px;
+            background-color: rgb(247, 223, 12);
+            height: 50px;
+            color: black;
+            font-weight: bolder;
+            padding-right: 20px;
+            padding-left: 20px;
+            padding-top: 15px;
+            font-size: 18px;
+        }
+
+        .main {
+            margin: 10%;
+            margin-top: 5%;
+            background-color: rgb(247, 223, 12);
+            font-size: larger;
+            font-weight: bolder;
+            padding: 2%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main>p {
+            margin: 2%;
+            background-color: white;
+            width: 90%;
+            padding: 1%;
+            height: 200px;
+            border: 1px solid black;
+        }
+
+        #ip1 {
+            margin: 2%;
+            background-color: white;
+            width: 90%;
+            height: 200px;
+            border: 1px solid black;
+            overflow-wrap: normal;
+            font-weight: bolder;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: large;
+        }
+
+        .main>input {
+            margin: 2%;
+            background-color: white;
+            width: 10%;
+            padding: 1%;
+            height: 20px;
+            border: 1px solid black;
+        }
+
+        button {
+            margin:2%;
+            background-color: rgb(247, 153, 12);
+            width: 20%;
+            padding: 1%;
+            height: 40px;
+            border: 2px solid black;
+            font-weight: bolder;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="top" class="header">
+        <center>TEXT SUMMARIZER <a id="a2" href="TSabout.html" style="float: right;">About Us</a></center>
+    </div>
+    <br>
+    <center><a style="font-size: large; font-weight: bolder;" href="TSsteps.html">Learn how to use it?</a></center>
+    <div class="main">
+        <label for="ip1">Enter Text</label>
+        <textarea id="ip1"></textarea>
+        <label for="ip2">Enter No. Of Lines</label>
+        <input type="number" id="ip2">
+        <center><button id="btn" onclick="getData()">Summarize</button></center>
+        <label for="ip3">Summarized Text</label>
+        <p id="ip3"></p>
+    </div>
+
+    <div style="bottom: 0%;" class="footer">
+        <b style="float: left;"> © 2022 TEXT SUMMARIZER</b>
+    </div>
+
+    <script>
+        function getData() {
+            var t = document.getElementById("ip1").value;
+            var n = document.getElementById("ip2").value;
+
+            let formData = new FormData();
+            formData.append('key', '12b64e99fb21c16053696141f8312424');
+            formData.append('of', 'json');
+            formData.append('txt', t);
+            formData.append('sentences', n);
+
+            fetch(
+                'https://api.meaningcloud.com/summarization-1.0',
+                { body: formData, method: "post" }
+            )
+                .then(response => {
+                    if (response.ok) return response.json();
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    // console.log(data);
+                    // console.log(data.summary);
+                    document.getElementById("ip3").innerHTML = data.summary;
+                });
+        }
+    </script>
+</body>
+
+</html>
