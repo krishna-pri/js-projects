@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rolling Dice</title>
+    <style>
+      #roll {
+        display: none;
+      }
+      body {
+        margin: 0%;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-size: larger;
+        background-color: bisque;
+      }
+      .main {
+        margin: 10% 20%;
+        background-color: white;
+        padding: 2%;
+      }
+      button {
+        width: max-content;
+        background-color: bisque;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-weight: bold;
+        font-size: large;
+      }
+      label,
+      input {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-weight: bold;
+      }
+      input {
+        margin-right: 5%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div id="div1" style="justify-content: center">
+        <h1 id="game">Shall we start the Game?</h1>
+        <center>
+          <button id="strt" onclick="startShow()">YES</button>
+          <button id="stop" onclick="stopShow()">NO</button>
+        </center>
+      </div>
+      <br /><br />
+      <div id="roll">
+        <center>
+          <label for="dice1">Dice 1 : </label>
+          <input id="dice1" type="text" />
+          <label for="dice2">Dice 2 : </label>
+          <input id="dice2" type="text" />
+        </center>
+      </div>
+      <center>
+        <button
+          id="rolldice"
+          style="display: none; margin: 4%"
+          onclick="startGame()"
+        >
+          Roll the Dice
+        </button>
+      </center>
+      <h1 align="center" id="result"></h1>
+      <center>
+        <button id="again" style="display: none" onclick="loadAgain()">
+          Start Again
+        </button>
+      </center>
+    </div>
+    <script>
+      function startShow() {
+        document.getElementById("result").innerHTML = " ";
+        document.getElementById("div1").style.display = "none";
+        document.getElementById("roll").style.display = "block";
+        document.getElementById("rolldice").style.display = "block";
+      }
+      function startGame() {
+        // alert("hi");
+
+        document.getElementById("dice1").value =
+          Math.floor(Math.random() * 6) + 1;
+        document.getElementById("dice2").value =
+          Math.floor(Math.random() * 6) + 1;
+        computeResult();
+      }
+      function computeResult() {
+        var d1 = document.getElementById("dice1").value;
+        var d2 = document.getElementById("dice2").value;
+        if (d1 == 6 && d2 == 6) {
+          document.getElementById("rolldice").style.display = "none";
+          document.getElementById("result").innerHTML =
+            "Huraay!! You Won!!!  :)";
+          document.getElementById("again").style.display = "block";
+        } else if (d1 == 1 && d2 == 1) {
+          document.getElementById("rolldice").style.display = "none";
+          document.getElementById("result").innerHTML = "OMG!! You Lost!!!";
+          document.getElementById("again").style.display = "block";
+        } else {
+          document.getElementById("result").innerHTML = "Roll the dice Again";
+        }
+      }
+      function loadAgain() {
+        location.reload();
+      }
+      function stopShow() {
+        document.getElementById("result").innerHTML =
+          "Okay. Let us play some other time :)";
+      }
+    </script>
+  </body>
+</html>
