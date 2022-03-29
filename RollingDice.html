@@ -17,6 +17,7 @@
         margin: 10% 20%;
         background-color: white;
         padding: 2%;
+        height: 270px;
       }
       button {
         width: max-content;
@@ -92,17 +93,28 @@
         var d2 = document.getElementById("dice2").value;
         if (d1 == 6 && d2 == 6) {
           document.getElementById("rolldice").style.display = "none";
-          document.getElementById("result").innerHTML =
-            "Huraay!! You Won!!!  :)";
+          setTimeout(() => {
+            document.getElementById("result").innerHTML =
+              "Hurray!! You Won!!!  :)";
+          }, 100);
           document.getElementById("again").style.display = "block";
         } else if (d1 == 1 && d2 == 1) {
           document.getElementById("rolldice").style.display = "none";
-          document.getElementById("result").innerHTML = "OMG!! You Lost!!!";
+          setTimeout(() => {
+            document.getElementById("result").innerHTML = "OMG!! You Lost!!!";
+          }, 100);
           document.getElementById("again").style.display = "block";
         } else {
-          document.getElementById("result").innerHTML = "Roll the dice Again";
+          rollAgain();
         }
       }
+
+      const rollAgain = () => {
+        document.getElementById("result").innerHTML = " ";
+        setTimeout(() => {
+          document.getElementById("result").innerHTML = "Roll the dice Again";
+        }, 1000);
+      };
       function loadAgain() {
         location.reload();
       }
