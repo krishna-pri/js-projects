@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock Paper Scissors</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      body {
+        margin: 0%;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-size: larger;
+        background-color: bisque;
+      }
+      .main {
+        margin: 5% 5%;
+        background-color: white;
+        padding: 2%;
+        height: 200px;
+      }
+
+      #ok {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-size: large;
+        font-weight: bold;
+        /* padding: 1%; */
+        margin: 10% 0%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div id="no-moves" align="center">
+        <h2>Determine the number of moves</h2>
+        <input type="number" id="num" min="1" step="1" max="20" />
+        <br />
+        <button id="ok" style="margin: 2%" onclick="startGame()">OK</button>
+      </div>
+    </div>
+    <script>
+      const startGame = () => {
+        var num = document.getElementById("num").value;
+        localStorage.setItem("moves", num);
+        window.location.href = "RockPaperSci2.html";
+      };
+    </script>
+  </body>
+</html>

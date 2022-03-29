@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock Paper Scissors</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      body {
+        margin: 0%;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-size: medium;
+        background-color: bisque;
+      }
+      .main {
+        margin: 2% 5%;
+        background-color: white;
+        padding: 1%;
+        height: 550px;
+      }
+      .game {
+        padding: 2% 8%;
+        margin: 2%;
+        /* display: flex;
+        flex-direction: row; */
+        display: grid;
+        grid-template-rows: 10vw;
+        grid-template-columns: 30vw 20vw;
+        grid-column-gap: 10vw;
+        align-items: center;
+        justify-content: space-evenly;
+        background-color: aqua;
+      }
+      .you {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .you,
+      .comp {
+        margin: 3%;
+      }
+      .moves > button,
+      #go,
+      #ok, #play {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+        font-size: medium;
+        font-weight: bold;
+        /* padding: 1%; */
+        margin: 10% 0%;
+      }
+      .moves {
+        margin: 5%;
+      }
+      #score
+      {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+      }
+      #play:hover
+      {
+          text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body onload="loadData()">
+    <div class="main">
+        <center><button id="play" onclick="playAgain()" style="margin: 2%;background-color: rgba(255, 255, 0, 0.363); color: red; font-size: x-large; display: none;">Play Again</button></center>
+      <h2 id="make-move" align="center">Make your move</h2>
+      <center>
+        <label for="no">Moves left</h3>
+        <input id="no" min="0" max="20" readonly/>
+      </center>
+      <div class="game">
+        <div class="you">
+          <div class="moves">
+            <button id="rck" onclick="setRock()">Rock</button>
+            <br />
+            <button id="pap" onclick="setPaper()">Paper</button>
+            <br />
+            <button id="sci" onclick="setScissors()">Scissors</button>
+          </div>
+          <div>
+            <label>Your Move</label>
+            <input id="your-move" type="text" style="text-align: center" readonly/>
+          </div>
+        </div>
+        <div id="comp">
+          <label>Computer's Move</label>
+          <br />
+          <input id="comp-move" type="text" style="text-align: center" readonly/>
+        </div>
+      </div>
+      <center>
+        <button id="go" onclick="goComp()" style="margin: 0%">GO</button>
+      </center>
+      <h2 id="result" align="center" style="color: brown;"></h2>
+      <div id="score" style="background-color: rgba(255, 255, 0, 0.473); padding: 2%;">
+      <div>
+      <label for="your-score">Your Score :</label>
+      <input id="your-score" type="number" value="0" readonly>
+      </div>
+      <div>
+      <label for="comp-score">Computer's Score :</label>
+      <input id="comp-score" type="number" value="0" readonly>
+      </div>
+      </div>
+      <h2 id="end" align="center" style="color: red;"></h2>
+    </div>
+
+    <script>
+      function setRock() {
+        document.getElementById("your-move").value = "ROCK";
+      }
+      function setPaper() {
+        document.getElementById("your-move").value = "PAPER";
+      }
+      function setScissors() {
+        document.getElementById("your-move").value = "SCISSORS";
+      }
+      const goComp = () => {
+
+          var num=localStorage.getItem("moves");
+        //   if(num!=0)
+        //   {
+          var cm=Math.floor(Math.random() * 3) + 1;
+          switch(cm)
+          {
+              case 1:
+                  document.getElementById("comp-move").value="ROCK";
+                  break;
+                  case 2:
+                  document.getElementById("comp-move").value="PAPER";
+                  break;
+                  case 3:
+                  document.getElementById("comp-move").value="SCISSORS";
+                  break;
+          }
+          var v1=document.getElementById("your-move").value;
+          var v2=document.getElementById("comp-move").value;
+          var you=0;
+          var comp=0;
+          if((v1=="ROCK"&& v2=="ROCK")||(v1=="PAPER"&& v2=="PAPER")||(v1=="SCISSORS"&& v2=="SCISSORS"))
+          {
+              document.getElementById("result").innerHTML="No Points";
+          }
+          else if((v1=="ROCK"&& v2=="PAPER"))
+          {
+              document.getElementById("result").innerHTML="Paper Covered Rock!";
+              comp=1;
+          }
+          else if((v1=="PAPER"&& v2=="ROCK"))
+          {
+              document.getElementById("result").innerHTML="Paper Covered Rock!";
+              you=1;
+          }
+          else if((v1=="ROCK"&& v2=="SCISSORS"))
+          {
+              document.getElementById("result").innerHTML="Rock broke the Scissors!";
+              you=1;
+          }
+          else if((v1=="SCISSORS"&& v2=="ROCK"))
+          {
+              document.getElementById("result").innerHTML="Rock broke the Scissors!";
+              comp=1;
+          }
+          else if((v1=="PAPER"&& v2=="SCISSORS"))
+          {
+              document.getElementById("result").innerHTML="Scissors cut the Paper!";
+              comp=1;
+          }
+          else if((v1=="SCISSORS"&& v2=="PAPER"))
+          {
+              document.getElementById("result").innerHTML="Scissors cut the Paper!";
+              you=1;
+          }
+          if(you==1)
+          {
+              var marks=parseInt(document.getElementById("your-score").value);
+              marks=marks+10;
+              document.getElementById("your-score").value=marks;
+          }
+          else if(comp==1)
+          {
+              var marks=parseInt(document.getElementById("comp-score").value);
+              marks=marks+10;
+              document.getElementById("comp-score").value=marks;
+          }
+          num--;
+          localStorage.setItem("moves",num);
+          loadData();
+          if(num==0)
+        {
+            document.getElementById("go").style.display="none";
+            document.getElementById("result").innerHTML="Game Over";
+            var s1=document.getElementById("your-score").value;
+            var s2=document.getElementById("comp-score").value;
+            if(s1>s2)
+            {
+                document.getElementById("end").innerHTML="Hurray! You WON!!!"
+            }
+            else if(s2>s1)
+            {
+                document.getElementById("end").innerHTML="You Lost. The Computer WON!!!"
+            }
+            else if(s1==s2)
+            {
+                document.getElementById("end").innerHTML="DRAW..."
+            }
+            document.getElementById("make-move").style.display="none";
+            document.getElementById("play").style.display="block";
+        }
+        
+        
+      };
+      const loadData=()=>{
+          var num=localStorage.getItem("moves");
+          document.getElementById("no").value=num;
+      }
+      const playAgain=()=>
+      {
+          localStorage.clear();
+          window.location.href = "RockPaperScissor.html";
+      }
+    </script>
+  </body>
+</html>
